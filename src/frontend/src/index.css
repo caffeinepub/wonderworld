@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* OKLCH design tokens — L C H */
+  --color-teal: 0.72 0.14 192;
+  --color-teal-light: 0.86 0.09 192;
+  --color-teal-dark: 0.58 0.17 192;
+  --color-navy: 0.25 0.04 243;
+  --color-wonderpurple: 0.52 0.19 270;
+  --color-wonderyellow: 0.88 0.17 96;
+  --color-wondergreen: 0.73 0.18 145;
+  --color-wonderblue: 0.57 0.17 255;
+
+  /* shadcn semantic tokens */
+  --background: 100% 0 0;
+  --foreground: 0.25 0.04 243;
+  --card: 100% 0 0;
+  --card-foreground: 0.25 0.04 243;
+  --popover: 100% 0 0;
+  --popover-foreground: 0.25 0.04 243;
+  --primary: 0.72 0.14 192;
+  --primary-foreground: 100% 0 0;
+  --secondary: 0.97 0.02 192;
+  --secondary-foreground: 0.25 0.04 243;
+  --muted: 0.96 0.01 240;
+  --muted-foreground: 0.55 0.03 243;
+  --accent: 0.86 0.09 192;
+  --accent-foreground: 0.25 0.04 243;
+  --destructive: 0.62 0.22 25;
+  --destructive-foreground: 100% 0 0;
+  --border: 0.91 0.02 240;
+  --input: 0.91 0.02 240;
+  --ring: 0.72 0.14 192;
+  --radius: 0.75rem;
+}
+
+@layer base {
+  body {
+    font-family: "Nunito", system-ui, sans-serif;
+    background-color: oklch(100% 0 0);
+    color: oklch(0.25 0.04 243);
+  }
+
+  * {
+    border-color: oklch(var(--border));
+  }
+}
+
+@layer components {
+  .btn-wonder {
+    @apply font-bold rounded-3xl px-6 py-3 text-lg transition-all duration-200 active:scale-95 shadow-md;
+  }
+
+  .game-card {
+    @apply bg-white rounded-3xl shadow-card overflow-hidden;
+  }
+}
+
+/* Color reticle overlay */
+.reticle {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.reticle::before {
+  content: "";
+  width: 80px;
+  height: 80px;
+  border: 3px solid rgba(255, 60, 60, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5), 0 0 16px 4px
+    rgba(255, 60, 60, 0.4);
+}
+
+/* Corner ticks */
+.reticle::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  border-top: 4px solid #fff;
+  border-left: 4px solid #fff;
+  clip-path: inset(0 60% 60% 0);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
